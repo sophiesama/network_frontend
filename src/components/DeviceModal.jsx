@@ -1,6 +1,5 @@
 import React from 'react';
 import Modal from 'react-modal';
-import { connect } from 'react-redux';
 const customStyles = {
   content: {
     top: '50%',
@@ -25,15 +24,4 @@ const DeviceModal = ({ id, isOpen, onRequestClose }) => {
   )
 };
 
-// const mapStateToProps = (state) => {
-//   return {
-//     showModal: state.modalsStore.showDeviceModal 
-//   }
-// }
-
-// const mapDispatchToProps = (dispatch) => ({
-//   closeModal: () => dispatch({ type: "HideDeviceModal" })
-// })
-
-// export default connect(mapStateToProps, mapDispatchToProps)(DeviceModal);
 export default DeviceModal

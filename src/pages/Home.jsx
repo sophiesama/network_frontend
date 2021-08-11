@@ -1,6 +1,6 @@
 import { Layout } from 'antd';
 import { StyleSheet, css } from 'aphrodite';
-import TopoGraph2 from '../components/TopoGraph2'
+import TopoGraph from '../components/TopoGraph2'
 import MySider from '../components/MySider'
 const { Header, Content, Footer } = Layout;
 
@@ -12,7 +12,7 @@ export default function Home() {
         <Header className={css(styles.siteLayoutSubHeaderBackground)}>数字孪生网络系统(Demo)</Header>
         <Content style={{ margin: '24px 16px 0' }}>
           <div className={css(styles.siteLayOutBackground)}>
-            <TopoGraph2 />
+            <TopoGraph />
           </div>
         </Content>
         <Footer style={{ textAlign: 'center' }}>数据服务实验室 ©2021</Footer>
