@@ -1,0 +1,2 @@
+export const SERVERIMAGE = 'https://icons.iconarchive.com/icons/icons-land/vista-hardware-devices/128/Home-Server-icon.png';
+export const HUBIMAGE = 'https://icons.iconarchive.com/icons/treetog/junior/128/usb-hub-icon.png';
