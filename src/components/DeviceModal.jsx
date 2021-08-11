@@ -1,5 +1,6 @@
 import React from 'react';
 import Modal from 'react-modal';
+import DeviceModalContent from './DeviceModalContent';
 const customStyles = {
   content: {
     top: '50%',
@@ -19,7 +20,7 @@ const DeviceModal = ({ id, isOpen, onRequestClose }) => {
       style={customStyles}
       contentLabel="Example Modal"
     >
-      <button onClick={onRequestClose}>close{id}</button>
+      <DeviceModalContent id = {id}/>
     </Modal>
   )
 };

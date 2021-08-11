@@ -1,6 +1,6 @@
 import { Layout } from 'antd';
 import { StyleSheet, css } from 'aphrodite';
-import TopoGraph from '../components/TopoGraph2'
+import TopoGraph from '../components/TopoGraph'
 import MySider from '../components/MySider'
 const { Header, Content, Footer } = Layout;
 

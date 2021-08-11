@@ -2,9 +2,10 @@ import React, { useEffect, useRef, useState } from 'react';
 import { Network } from 'vis-network';
 import { HUBIMAGE, SERVERIMAGE } from '../constants/urls';
 import DeviceModal from './DeviceModal';
+import { getRandomArbitrary } from '../utils/mathutils';
 // import { connect } from 'react-redux';
 
-const TopoGraph2 = () => {
+const TopoGraph = () => {
   const container = useRef(null);
 
   const nodes = [
@@ -15,16 +16,16 @@ const TopoGraph2 = () => {
     { id: 5, label: '192.168.0.104', image: SERVERIMAGE, shape: "image", group: 2, x: 200, y: 400, size: 50  },
     { id: 6, label: '192.168.0.105', image: SERVERIMAGE, shape: "image", group: 2, x: 400, y: 400, size: 50  }
   ];
-  const edges = [
-    { from: 1, to: 2 },
-    { from: 2, to: 3 },
-    { from: 3, to: 1 },
-    { from: 2, to: 4 },
-    { from: 2, to: 5 },
-    { from: 2, to: 6 },
-    { from: 3, to: 4 },
-    { from: 3, to: 5 },
-    { from: 3, to: 6 },
+  let edges = [
+    { from: 1, to: 2, label: getRandomArbitrary(900,1100) + "Mb/s" },
+    { from: 2, to: 3, label: getRandomArbitrary(900,1100) + "Mb/s" },
+    { from: 3, to: 1, label: getRandomArbitrary(900,1100) + "Mb/s" },
+    { from: 2, to: 4, label: getRandomArbitrary(900,1100) + "Mb/s" },
+    { from: 2, to: 5, label: getRandomArbitrary(900,1100) + "Mb/s" },
+    { from: 2, to: 6, label: getRandomArbitrary(900,1100) + "Mb/s" },
+    { from: 3, to: 4, label: getRandomArbitrary(900,1100) + "Mb/s" },
+    { from: 3, to: 5, label: getRandomArbitrary(900,1100) + "Mb/s" },
+    { from: 3, to: 6, label: getRandomArbitrary(900,1100) + "Mb/s" },
   ];
 
   const options = {physics: false};
@@ -34,6 +35,7 @@ const TopoGraph2 = () => {
   const closeModal = () => setIsOpen(false)
   const showModal = () => setIsOpen(true)
   
+  //create network first time
   useEffect(() => {
     const network =
       container.current &&
@@ -44,7 +46,22 @@ const TopoGraph2 = () => {
       console.log(nodeId)
       showModal()
     });
-  }, [container, nodes, edges]);
+  }, [edges]);
+
+  // useEffect(() => {
+  //   const interval = setInterval(() => {
+  //     console.log("interval test")
+  //     edges = edges.map((item)=>{
+  //       item.label = getRandomArbitrary(900,1100) + "Mb/s"
+  //       return item
+  //     })
+  //     const network =
+  //     container.current &&
+  //     new Network(container.current, { nodes, edges }, options);
+  //     console.log(network)
+  //   }, 1000);
+  //   return () => clearInterval(interval)
+  // }, [])
 
   return (
   <div>
