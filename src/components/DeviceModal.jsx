@@ -4,7 +4,7 @@ import DeviceModalContent from './DeviceModalContent';
 const customStyles = {
   content: {
     top: '50%',
-    left: '50%',
+    left: '70%',
     right: 'auto',
     bottom: 'auto',
     marginRight: '-50%',

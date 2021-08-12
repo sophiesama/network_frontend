@@ -46,7 +46,7 @@ const TopoGraph = () => {
       console.log(nodeId)
       showModal()
     });
-  }, [edges]);
+  }, []);
 
   // useEffect(() => {
   //   const interval = setInterval(() => {
@@ -62,10 +62,10 @@ const TopoGraph = () => {
   //   }, 1000);
   //   return () => clearInterval(interval)
   // }, [])
-
   return (
   <div>
-    <div ref={container} style={{ height: '500px', width: '100%' }} />
+    <div ref={container} style={{ float: 'left', height: '500px', width: '50%', borderRight: 'dashed #CCCCFF' }} />
+    <div style={{ height: '500px', marginLeft: '52%' }}>核心网</div>
     <DeviceModal id={nodeId}
       isOpen={isOpen}
       onRequestClose={closeModal}

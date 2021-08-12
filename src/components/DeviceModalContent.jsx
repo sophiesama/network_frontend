@@ -66,12 +66,6 @@ const PortCard = ({portNum}) => {
   )
 }
 
-// const SwitchCard = () => {
-//   return (
-//     <div></div>
-//   )
-// }
-
 const DeviceModalContent = ({ id }) => {
   const [cardType, setCardType] = useState(0)
   const [portNum, setPortNum] = useState(1)
