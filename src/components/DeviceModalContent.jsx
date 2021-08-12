@@ -2,6 +2,7 @@ import { css, StyleSheet } from "aphrodite";
 import { Statistic, Row, Col } from "antd";
 import { useState } from "react";
 import { getRandomBytes } from "../utils/mathutils";
+import { CARDIMAGELIST } from '../constants/urls';
 
 const SwitchCard = () => {
   return (
@@ -66,16 +67,18 @@ const PortCard = ({portNum}) => {
   )
 }
 
-const DeviceModalContent = ({ id }) => {
+const DeviceModalContent = ({ id, type }) => {
   const [cardType, setCardType] = useState(0)
   const [portNum, setPortNum] = useState(1)
   return (
     <div style={{ minHeight: '480px', width: '640px'}}>
-      <img onClick={()=>{setCardType(0)}} alt="" src="https://m.media-amazon.com/images/I/61TN5rBan9L._AC_SL1500_.jpg" style={{ width:'640px' }}/>
+      <img onClick={()=>{setCardType(0)}} alt="" src={CARDIMAGELIST[type]} style={{ width:'640px', maxHeight:'320px' }}/>
+      {type===0?<>
       <div className={css(styles.port1)} onClick={()=>{setCardType(2); setPortNum(1)}}/>
       <div className={css(styles.port2)} onClick={()=>{setCardType(2); setPortNum(2)}}/>
       <div className={css(styles.port3)} onClick={()=>{setCardType(2); setPortNum(3)}}/>
       <div className={css(styles.port6)} onClick={()=>{setCardType(2); setPortNum(6)}}/>
+      </>:null}
       {cardType === 0?<SwitchCard/>:null}
       {cardType === 1?<ServerCard/>:null}
       {cardType === 2?<PortCard portNum={portNum}/>:null}

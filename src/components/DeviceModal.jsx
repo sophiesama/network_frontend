@@ -12,7 +12,7 @@ const customStyles = {
   },
 };
 
-const DeviceModal = ({ id, isOpen, onRequestClose }) => {
+const DeviceModal = ({ id, type, isOpen, onRequestClose }) => {
   return (
     <Modal
       isOpen={isOpen}
@@ -21,7 +21,7 @@ const DeviceModal = ({ id, isOpen, onRequestClose }) => {
       ariaHideApp={false}
       contentLabel="Example Modal"
     >
-      <DeviceModalContent id = {id}/>
+      <DeviceModalContent id = {id} type = {type}/>
     </Modal>
   )
 };
