@@ -2,9 +2,11 @@ import React, { useState } from 'react';
 import { Row, Col, Switch } from 'antd';
 import CoreTable from './tables/CoreTable';
 import AccessTable from './tables/AccessTable';
+import ApplicationTable from './tables/ApplicationTable';
 import NetSelector from './NetSelector';
 import CoreNet from './nets/CoreNet';
 import AccessNet from './nets/AccessNet';
+import ApplicationNet from './nets/ApplicationNet';
 
 const TopoGraph = () => {
   const [dynamic, setDynamic ] = useState(false)
@@ -23,14 +25,14 @@ const TopoGraph = () => {
           <Col span={24}>
             {netType===1?<CoreNet dynamic={dynamic}/>:null}
             {netType===2?<AccessNet dynamic={dynamic}/>:null}
-            {netType===3?<CoreNet dynamic={dynamic}/>:null}
+            {netType===3?<ApplicationNet dynamic={dynamic}/>:null}
           </Col>
         </Row>
       </Col>
         <Col span={12}>
           {netType===1?<CoreTable />:null}
           {netType===2?<AccessTable />:null}
-          {netType===3?<CoreTable />:null}
+          {netType===3?<ApplicationTable />:null}
         </Col>
     </Row>
   </div>

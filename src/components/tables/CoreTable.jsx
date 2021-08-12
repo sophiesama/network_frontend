@@ -38,7 +38,7 @@ const columns = [
 const data = [
   {
     key: '1',
-    name: '核心网交换机1',
+    name: 'SDN交换机1',
     ipAddr: '192.168.0.100',
     httpReq: '12.46',
     tcpLat: '624',
@@ -46,7 +46,7 @@ const data = [
   },
   {
     key: '2',
-    name: '核心网交换机2',
+    name: 'SDN交换机2',
     ipAddr: '192.168.0.101',
     httpReq: '0.24',
     tcpLat: '4568',
@@ -54,7 +54,7 @@ const data = [
   },
   {
     key: '3',
-    name: '核心网交换机3',
+    name: 'SDN交换机3',
     ipAddr: '192.168.0.102',
     httpReq: '12.46',
     tcpLat: '624',

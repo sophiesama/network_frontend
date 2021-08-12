@@ -1,57 +1,55 @@
-import React, { useEffect, useRef, useState } from 'react';
+import React, { useEffect, useRef } from 'react';
 import { Network } from 'vis-network';
-import { HUBIMAGE, SERVERIMAGE } from '../constants/urls';
-import { getRandomArbitrary } from '../utils/mathutils';
-import { Row, Col, Switch } from 'antd';
-import DeviceModal from './DeviceModal';
-import SimpleTable from './SimpleTable';
-import NetSelector from './NetSelector';
+import { SERVERIMAGE, KUBERNETESIMAGE, NGINXIMAGE, DOCKERIMAGE } from '../../constants/urls';
 // import { connect } from 'react-redux';
 
-const TopoGraph = () => {
+const ApplicationNet = ({dynamic}) => {
   const container = useRef(null);
 
   const nodes = [
-    { id: 1, label: '192.168.0.100', image: HUBIMAGE, shape: "image", group: 1, x: 200, y: 0, size: 50 },
-    { id: 2, label: '192.168.0.101', image: HUBIMAGE, shape: "image", group: 1, x: 100, y: 200, size: 50 },
-    { id: 3, label: '192.168.0.102', image: HUBIMAGE, shape: "image", group: 1, x: 300, y: 200, size: 50 },
-    { id: 4, label: '192.168.0.103', image: SERVERIMAGE, shape: "image", group: 2, x: 0, y: 400, size: 50  },
-    { id: 5, label: '192.168.0.104', image: SERVERIMAGE, shape: "image", group: 2, x: 200, y: 400, size: 50  },
-    { id: 6, label: '192.168.0.105', image: SERVERIMAGE, shape: "image", group: 2, x: 400, y: 400, size: 50  }
+    { id: 1, image: KUBERNETESIMAGE, shape: "image", group: 1, size: 50 },
+    { id: 2, image: SERVERIMAGE, shape: "image", group: 2, size: 50 },
+    { id: 3, image: SERVERIMAGE, shape: "image", group: 2, size: 50 },
+    { id: 4, image: SERVERIMAGE, shape: "image", group: 2, size: 50 },
+    { id: 5, image: NGINXIMAGE, shape: "image", group: 3, size: 50 },
+    { id: 6, image: NGINXIMAGE, shape: "image", group: 3, size: 50 },
+    { id: 7, image: NGINXIMAGE, shape: "image", group: 3, size: 50 },
+    { id: 8, image: NGINXIMAGE, shape: "image", group: 3, size: 50 },
+    { id: 9, image: DOCKERIMAGE, shape: "image", group: 3, size: 50 },
+    { id: 10, image: DOCKERIMAGE, shape: "image", group: 3, size: 50 },
+    { id: 11, image: DOCKERIMAGE, shape: "image", group: 3, size: 50 },
   ];
   let edges = [
-    { from: 1, to: 2, label: getRandomArbitrary(900,1100) + "Mb/s" },
-    // { from: 2, to: 3, label: getRandomArbitrary(900,1100) + "Mb/s" },
-    // { from: 3, to: 1, label: getRandomArbitrary(900,1100) + "Mb/s" },
-    { from: 2, to: 4, label: getRandomArbitrary(900,1100) + "Mb/s" },
-    { from: 2, to: 5, label: getRandomArbitrary(900,1100) + "Mb/s" },
-    { from: 2, to: 6, label: getRandomArbitrary(900,1100) + "Mb/s" },
-    { from: 1, to: 4, label: getRandomArbitrary(900,1100) + "Mb/s" },
-    { from: 1, to: 5, label: getRandomArbitrary(900,1100) + "Mb/s" },
-    { from: 1, to: 6, label: getRandomArbitrary(900,1100) + "Mb/s" },
+    { from: 1, to: 2},
+    { from: 1, to: 3},
+    { from: 1, to: 4},
+    { from: 2, to: 6},
+    { from: 2, to: 7},
+    { from: 2, to: 8},
+    { from: 3, to: 9},
+    { from: 3, to: 10},
+    { from: 3, to: 11},
+    { from: 4, to: 5},
   ];
 
-  const options = {physics: false};
-  const [nodeId, setNodeId ] = useState(0)
-  const [isOpen, setIsOpen ] = useState(false)
-  const [dynamic, setDynamic ] = useState(false)
-  const [netType, setNetType ] = useState(1)
-
-  const closeModal = () => setIsOpen(false)
-  const showModal = () => setIsOpen(true)
-  const switchChange = () => setDynamic(!dynamic)
-  const netTypeChange = e => {setNetType(e.target.value)}
+  const options = {
+    layout: {
+      hierarchical: {
+        direction: "UD",
+        sortMethod: "directed",
+      }
+    },
+    edges: {
+      arrows: "to"
+    }
+  };
   
   //create network first time
   useEffect(() => {
-    const network =
-      container.current &&
-      new Network(container.current, { nodes, edges }, options);
+    const network = container.current &&
+    new Network(container.current, { nodes, edges }, options);
     network.on("selectNode", (params) => {
-      setNodeId(params.nodes[0])
       console.log(params.nodes[0])
-      console.log(nodeId)
-      showModal()
     });
   }, []);
 
@@ -60,45 +58,20 @@ const TopoGraph = () => {
     if (!dynamic) return false 
     const interval = setInterval(() => {
       console.log("interval test")
-      edges = edges.map((item)=>{
-        item.label = getRandomArbitrary(900,1100) + "Mb/s"
-        return item
-      })
       const network =
       container.current &&
       new Network(container.current, { nodes, edges }, options);
       network.on("selectNode", (params) => {
-        setNodeId(params.nodes[0])
         console.log(params.nodes[0])
-        console.log(nodeId)
-        showModal()
       });
     }, 1000);
     return () => clearInterval(interval)
   }, [dynamic])
   return (
   <div>
-    <Row gutter={24}>
-      <Col span={12}>
-        <Row gutter={24}>
-          <Col span={12}>动态<Switch onChange={switchChange}/></Col>
-          <Col span={9}><NetSelector netType={netType} selectLabel={netTypeChange}/></Col>
-          {/* <Col span={3}><Button type="primary" shape="round">核心网</Button></Col>
-          <Col span={3}><Button type="primary" shape="round">应用网</Button></Col>
-          <Col span={3}><Button type="primary" shape="round">自组网</Button></Col> */}
-          <Col span={24}>
-            <div ref={container} style={{ float: 'left', height: '500px', width: '100%', borderRight: 'dashed #CCCCFF' }} />
-          </Col>
-        </Row>
-      </Col>
-      <Col span={12}><SimpleTable/></Col>
-      <DeviceModal id={nodeId}
-        isOpen={isOpen}
-        onRequestClose={closeModal}
-      />
-    </Row>
+      <div ref={container} style={{ float: 'left', height: '500px', width: '100%', borderRight: 'dashed #CCCCFF' }} />
   </div>
   );
 };
 
-export default TopoGraph
+export default ApplicationNet

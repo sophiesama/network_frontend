@@ -1,3 +1,4 @@
+import { getRandomArbitrary } from "../../utils/mathutils";
 import { Table, Tag } from "antd";
 const columns = [
   {
@@ -11,14 +12,30 @@ const columns = [
     key: 'ipAddr',
   },
   {
-    title: "HTTP请求均值",
-    dataIndex: 'httpReq',
-    key: 'httpReq',
+    title: "内存%",
+    dataIndex: 'memory',
+    key: 'memory',
+    render: memory => {
+      let color = memory < 60 ? '#0066CC':'#FF0033';
+      return (
+        <span style={{color:color}}>
+          {memory}
+        </span>
+      )
+    }
   },
   {
-    title: "TCP建连时延均值",
-    dataIndex: 'tcpLat',
-    key: 'tcpLat',
+    title: "CPU%",
+    dataIndex: 'cpu',
+    key: 'cpu',
+    render: memory => {
+      let color = memory < 60 ? '#0066CC':'#FF0033';
+      return (
+        <span style={{color:color}}>
+          {memory}
+        </span>
+      )
+    }
   },
   {
     title: "状态",
@@ -38,48 +55,68 @@ const columns = [
 const data = [
   {
     key: '1',
-    name: '核心网交换机1',
-    ipAddr: '192.168.0.100',
-    httpReq: '12.46',
-    tcpLat: '624',
+    name: 'k8s-main',
+    system: 'linux',
+    desc: 'kube2',
+    ipAddr: '10.0.0.114',
+    memory: getRandomArbitrary(0,100),
+    cpu: getRandomArbitrary(0,100),
+    disk: getRandomArbitrary(0,20),
+    cpuCores: 8,
+    memorySize: '32G',
+    downBand: getRandomArbitrary(0,100)+'Mb/s',
+    upBand: getRandomArbitrary(0,10)+'Mb/s',
     status: '正常'
   },
   {
     key: '2',
-    name: '核心网交换机2',
-    ipAddr: '192.168.0.101',
-    httpReq: '0.24',
-    tcpLat: '4568',
+    name: 'kube1',
+    system: 'linux',
+    desc: 'kube3',
+    ipAddr: '10.0.0.125',
+    memory: getRandomArbitrary(0,100),
+    cpu: getRandomArbitrary(0,100),
+    disk: getRandomArbitrary(0,20),
+    cpuCores: 8,
+    memorySize: '32G',
+    downBand: getRandomArbitrary(0,100)+'Mb/s',
+    upBand: getRandomArbitrary(0,10)+'Mb/s',
     status: '正常'
   },
   {
     key: '3',
-    name: '核心网交换机3',
-    ipAddr: '192.168.0.102',
-    httpReq: '12.46',
-    tcpLat: '624',
-    status: '断线'
+    name: 'kube2',
+    system: 'linux',
+    desc: 'kube3',
+    ipAddr: '10.0.0.125',
+    memory: getRandomArbitrary(0,100),
+    cpu: getRandomArbitrary(0,100),
+    disk: getRandomArbitrary(0,20),
+    cpuCores: 8,
+    memorySize: '32G',
+    downBand: getRandomArbitrary(0,100)+'Mb/s',
+    upBand: getRandomArbitrary(0,10)+'Mb/s',
+    status: '正常'
   },
   {
     key: '4',
-    name: '主机节点1',
-    ipAddr: '192.168.0.103',
-    httpReq: '12.46',
-    tcpLat: '624',
-    status: '正常'
-  },
-  {
-    key: '5',
-    name: '主机节点2',
-    ipAddr: '192.168.0.104',
-    httpReq: '12.46',
-    tcpLat: '624',
+    name: 'kube3',
+    system: 'linux',
+    desc: 'kube3',
+    ipAddr: '10.0.0.125',
+    memory: getRandomArbitrary(0,100),
+    cpu: getRandomArbitrary(0,100),
+    disk: getRandomArbitrary(0,20),
+    cpuCores: 8,
+    memorySize: '32G',
+    downBand: getRandomArbitrary(0,100)+'Mb/s',
+    upBand: getRandomArbitrary(0,10)+'Mb/s',
     status: '正常'
   },
 ]
-const CoreTable = () => {
+const ApplicationTable = () => {
   return (
     <Table dataSource={data} columns={columns}/>
   )
 }
-export default CoreTable
+export default ApplicationTable

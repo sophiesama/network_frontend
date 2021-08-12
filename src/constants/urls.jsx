@@ -4,6 +4,10 @@ export const DRONEIMAGE = "https://stag-dji-official-fe.djicdn.com/pre/dps/aa374
 export const DRONEIMAGE2 = "https://www1.djicdn.com/cms_uploads/ckeditor/pictures/1502/content__%E5%BE%A1__Mavic_Air%E9%9B%AA%E5%9F%9F%E7%99%BD.png";
 export const HELIIMAGE = "https://icons.iconarchive.com/icons/matthew-kelleigh/mac-town-vol3/32/Helicopter-icon.png"
 export const GATEWAYIMAGE = "https://icons.iconarchive.com/icons/fatcow/farm-fresh/32/router-icon.png"
+export const KUBERNETESIMAGE = "https://download.logo.wine/logo/Kubernetes/Kubernetes-Logo.wine.png"
+export const NGINXIMAGE = "https://cdn.icon-icons.com/icons2/2107/PNG/512/file_type_nginx_icon_130305.png"
+export const GRAFANAIMAGE = "https://cdn.icon-icons.com/icons2/2699/PNG/512/grafana_logo_icon_171048.png"
+export const DOCKERIMAGE = "https://cdn.icon-icons.com/icons2/2107/PNG/512/file_type_docker_icon_130643.png"
 
 export const CARDIMAGELIST = [
     "https://m.media-amazon.com/images/I/61TN5rBan9L._AC_SL1500_.jpg",
