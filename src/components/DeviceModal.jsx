@@ -18,6 +18,7 @@ const DeviceModal = ({ id, isOpen, onRequestClose }) => {
       isOpen={isOpen}
       onRequestClose={onRequestClose}
       style={customStyles}
+      ariaHideApp={false}
       contentLabel="Example Modal"
     >
       <DeviceModalContent id = {id}/>
