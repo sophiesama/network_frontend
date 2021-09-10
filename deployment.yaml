@@ -1,0 +1,35 @@
+kind: Deployment
+apiVersion: apps/v1
+metadata:
+  name: netfront
+spec:
+  replicas: 2
+  selector:
+    matchLabels:
+      app: netfront
+  template:
+    metadata:
+      labels:
+        app: netfront
+    spec:
+      containers:
+        - name: netfront
+          image: kaclarpt/netfront
+          imagePullPolicy: IfNotPresent
+          ports:
+            - containerPort: 80
+      restartPolicy: Always
+---
+kind: Service
+apiVersion: v1
+metadata:
+  name: hello
+spec:
+  type: NodePort
+  ports:
+    - port: 80
+      targetPort: 80
+      protocol: TCP
+      nodePort: 31000
+  selector:
+    app: hello
