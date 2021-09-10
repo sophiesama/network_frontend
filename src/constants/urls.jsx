@@ -14,3 +14,5 @@ export const CARDIMAGELIST = [
     "https://cdn.shopify.com/s/files/1/0345/8999/9236/products/1-240-2_fcff90ea-6b82-4a69-8885-2363cfef8bca.jpg?v=1596964285",
     "https://img14.360buyimg.com/n1/s450x450_jfs/t5977/17/185587587/108108/247ade15/5925b821N32b8bb9a.jpg",
 ]
+
+export const GRAFANAURL = "http://202.120.40.106:2841/d/SpSQKcpMz/prometheus-dashboard?orgId=1"

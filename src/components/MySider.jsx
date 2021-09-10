@@ -1,6 +1,6 @@
 import { Layout, Menu } from 'antd';
 import { useState } from 'react';
-import { HomeOutlined, DesktopOutlined } from '@ant-design/icons';
+import { HomeOutlined, DesktopOutlined, AreaChartOutlined } from '@ant-design/icons';
 import { StyleSheet, css } from 'aphrodite';
 import { Link } from 'react-router-dom';
 const { Sider } = Layout;
@@ -29,6 +29,11 @@ export default function MySider() {
           <Menu.Item key="2" >
               <Link to="/devices">
                 <DesktopOutlined/>设备列表
+              </Link>
+          </Menu.Item>
+          <Menu.Item key="3" >
+              <Link to="/grafana">
+                <AreaChartOutlined/>监控页面
               </Link>
           </Menu.Item>
         </Menu>
